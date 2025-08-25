@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System.Net;
+using System.Text.RegularExpressions;
 using TestProject1.Helpers;
 using TestProject1.PageObject;
 
@@ -57,19 +58,37 @@ public class Tests
         [TestCase("EPAM_Corporate_Overview_Q4FY-2024.pdf")]
         public void DownloadFeatureWorkAsExpected(string fileName)
         {
-            string downloadPath = @"C:\\Users\\jvnr3\\Downloads\\";
-            string fullPath = Path.Combine(downloadPath, fileName);
+            var downloadPath = @"C:\\Users\\jvnr3\\Downloads\\";
+            var fullPath = Path.Combine(downloadPath, fileName);
 
-            driver.Navigate().Refresh();
             mainPageSteps
                 .Open()
                 .GoToAboutPage()
+                .AcceptCookie()
                 .ScrollToWebElement(mainPageSteps.mainPage.DownloadButton)
                 .ClickDownloadButton();
 
             validateDataHelper.VerifyThatFileIsDownloaded(fullPath);
         }
 
+        [Test]
+        public void TitleOfTheArticleMatchesWithTitleInTheCarousel()
+        {
+            mainPageSteps
+                .Open()
+                .ClickInsightsLink()
+                .AcceptCookie()
+                .ClickRightArrow()
+                .ClickRightArrow();
 
+            var textFromCarousel = mainPageSteps.mainPage.SliderText.Text;
+
+            mainPageSteps
+                .ClickReadMoreButton();
+
+            var textFromArticle = mainPageSteps.mainPage.PageLabel.Text;
+
+            validateDataHelper.VerifyThatTextIsEqual(textFromArticle, textFromCarousel);
+        }
     }
 }

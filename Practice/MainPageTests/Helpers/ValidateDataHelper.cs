@@ -31,4 +31,9 @@ public class ValidateDataHelper
         bool isFileDownloaded = File.Exists(fullPath);
         Assert.That(isFileDownloaded, $"The file was not downloaded: {fullPath}");
     }
+
+    public void VerifyThatTextIsEqual(string actualText, string expectedText)
+    {
+        Assert.That(actualText.Equals(expectedText), $"Actual text '{actualText}' does not match expected text '{expectedText}'.");
+    }
 }

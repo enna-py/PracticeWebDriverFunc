@@ -31,4 +31,9 @@ public class MainPage
     public IWebElement DownloadButton => driver.FindElement(By.XPath("//a[contains(., 'DOWNLOAD')]"));
     public IWebElement AcceptCookie => driver.FindElement(By.Id("onetrust-accept-btn-handler"));
     public IWebElement CookieBanner => driver.FindElement(By.Id("onetrust-banner-sdk"));
+    public IWebElement InsightsLink => driver.FindElement(By.XPath("//a[@class = 'top-navigation__item-link js-op' and normalize-space()='Insights']"));
+    public IReadOnlyCollection<IWebElement> Arrows => driver.FindElements(By.CssSelector(".slider__right-arrow"));
+    public IWebElement SliderText => driver.FindElement(By.CssSelector(".owl-item.active .single-slide__content .text .text-ui-23"));
+    public IWebElement ReadMoreButton => driver.FindElement(By.XPath("//a[@href=\"https://www.epam.com/insights/ebook/evolving-into-agentic-ai-turning-theory-into-action\"]"));
+    public IWebElement PageLabel => driver.FindElement(By.XPath("//div[@class = 'top-upper-part']//span[@class ='museo-sans-light']"));
 }

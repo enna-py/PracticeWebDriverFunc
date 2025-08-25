@@ -37,16 +37,6 @@ public class MainPageSteps
 
     public MainPageSteps ScrollToWebElement(IWebElement element)
     {
-        wait.Until(driver =>
-        {
-            return mainPage.CookieBanner.Displayed;
-        });
-        mainPage.AcceptCookie.Click(); 
-        wait.Until(driver =>
-        {
-            return !mainPage.CookieBanner.Displayed;
-        });
-
         var actions = new Actions(driver);
         actions.ScrollToElement(element);
         actions.Perform();
@@ -91,5 +81,55 @@ public class MainPageSteps
         return this;
     }
 
+    public MainPageSteps ClickInsightsLink()
+    {
+        wait.Until(driver =>
+        {
+            return mainPage.InsightsLink.Displayed;
+        });
 
+        mainPage.InsightsLink.Click();
+
+        return this;
+    }
+
+    public MainPageSteps AcceptCookie()
+    {
+        wait.Until(driver =>
+        {
+            return mainPage.CookieBanner.Displayed;
+        });
+        mainPage.AcceptCookie.Click();
+        wait.Until(driver =>
+        {
+            return !mainPage.CookieBanner.Displayed;
+        });
+        return this;
+    }
+
+    public MainPageSteps ClickRightArrow()
+    {
+        wait.Until(driver =>
+        {
+            return mainPage.Arrows.ElementAt(0).Displayed;
+        });
+
+        var actions = new Actions(driver);
+        actions.Click(mainPage.Arrows.ElementAt(1));
+        actions.Perform();
+
+        return this;
+    }
+
+    public MainPageSteps ClickReadMoreButton()
+    {
+        wait.Until(driver =>
+        {
+            return mainPage.ReadMoreButton.Displayed;
+        });
+
+        mainPage.ReadMoreButton.Click();
+
+        return this;
+    }
 }
