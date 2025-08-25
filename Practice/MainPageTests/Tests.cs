@@ -1,11 +1,7 @@
 ﻿using MainPageTests.DriverInitialization;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net;
 using TestProject1.Helpers;
 using TestProject1.PageObject;
 
@@ -56,5 +52,24 @@ public class Tests
 
             validateDataHelper.VerifyThatLinksContainsNeededWords(driver, searchData);
         }
+
+        [Test]
+        [TestCase("EPAM_Corporate_Overview_Q4FY-2024.pdf")]
+        public void DownloadFeatureWorkAsExpected(string fileName)
+        {
+            string downloadPath = @"C:\\Users\\jvnr3\\Downloads\\";
+            string fullPath = Path.Combine(downloadPath, fileName);
+
+            driver.Navigate().Refresh();
+            mainPageSteps
+                .Open()
+                .GoToAboutPage()
+                .ScrollToWebElement(mainPageSteps.mainPage.DownloadButton)
+                .ClickDownloadButton();
+
+            validateDataHelper.VerifyThatFileIsDownloaded(fullPath);
+        }
+
+
     }
 }

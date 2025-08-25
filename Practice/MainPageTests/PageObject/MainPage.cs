@@ -26,4 +26,9 @@ public class MainPage
     public IWebElement SearchPanel => wait.Until(driver => driver.FindElement(By.ClassName("header-search__panel")));
     public IWebElement SearchInput => SearchPanel.FindElement(By.Name("q"));
     public IWebElement FindButton => SearchPanel.FindElement(By.XPath(".//*[@class='search-results__input-holder']/following-sibling::button"));
+    public IWebElement AboutLink => driver.FindElement(By.XPath("//a[@class = 'top-navigation__item-link js-op' and normalize-space()='About']"));
+    public IWebElement EpamAtGlanceTitle => driver.FindElement(By.XPath("//div[@class='text-ui-23']//span[contains(text(),'EPAM at')]"));
+    public IWebElement DownloadButton => driver.FindElement(By.XPath("//a[contains(., 'DOWNLOAD')]"));
+    public IWebElement AcceptCookie => driver.FindElement(By.Id("onetrust-accept-btn-handler"));
+    public IWebElement CookieBanner => driver.FindElement(By.Id("onetrust-banner-sdk"));
 }

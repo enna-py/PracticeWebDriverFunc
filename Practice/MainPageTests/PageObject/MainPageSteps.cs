@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 namespace TestProject1.PageObject;
 public class MainPageSteps
@@ -20,6 +21,35 @@ public class MainPageSteps
     {
         driver.Url = MainPage.Url;
         driver.Manage().Window.Maximize();
+        return this;
+    }
+
+    public MainPageSteps GoToAboutPage()
+    {
+        mainPage.AboutLink.Click();
+        return this;
+    }
+    public MainPageSteps ClickDownloadButton()
+    {
+        mainPage.DownloadButton.Click();
+        return this;
+    }
+
+    public MainPageSteps ScrollToWebElement(IWebElement element)
+    {
+        wait.Until(driver =>
+        {
+            return mainPage.CookieBanner.Displayed;
+        });
+        mainPage.AcceptCookie.Click(); 
+        wait.Until(driver =>
+        {
+            return !mainPage.CookieBanner.Displayed;
+        });
+
+        var actions = new Actions(driver);
+        actions.ScrollToElement(element);
+        actions.Perform();
         return this;
     }
 
@@ -60,4 +90,6 @@ public class MainPageSteps
         mainPage.FindButton.Click();
         return this;
     }
+
+
 }

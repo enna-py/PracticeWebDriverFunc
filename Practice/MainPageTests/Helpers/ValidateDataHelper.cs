@@ -18,11 +18,17 @@ public class ValidateDataHelper
             Console.WriteLine("there is no expected words : " + link.Text);
         }
 
-        Assert.IsEmpty(invalidLinks, "words are missed");
+        Assert.That(invalidLinks.Equals(null), "words are missed");
     }
 
     public void VerifyThatPageContainsSpecificWord(string pageText, string programmingLanguage)
     {
         Assert.That(pageText.Contains(programmingLanguage), "Page is not contain text that belong to the provided language");
+    }
+
+    public void VerifyThatFileIsDownloaded(string fullPath)
+    {
+        bool isFileDownloaded = File.Exists(fullPath);
+        Assert.That(isFileDownloaded, $"The file was not downloaded: {fullPath}");
     }
 }
