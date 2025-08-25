@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium.Chrome;
+﻿using MainPageTests.DriverInitialization;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,7 @@ public class Tests
         [SetUp]
         public void SetUp()
         {
-            ChromeOptions options = new ChromeOptions();
-            options.AddArguments("user-agent=Mozilla/5.0 ...");
-            driver = new ChromeDriver(options);
+            driver = DriverCreation.CreateDriver();
             mainPageSteps = new MainPageSteps(driver);
             validateDataHelper = new ValidateDataHelper();
         }
