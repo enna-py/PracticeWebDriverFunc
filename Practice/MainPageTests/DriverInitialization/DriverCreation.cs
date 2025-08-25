@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium.Chrome;
 
 namespace MainPageTests.DriverInitialization;
-public class DriverCreation
+public static class DriverCreation
 {
     public static ChromeDriver CreateDriver()
     {
