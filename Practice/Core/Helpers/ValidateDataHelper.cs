@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace TestProject1.BL.Helpers;
+namespace TestProject1.Helpers;
 public class ValidateDataHelper
 {
     public void VerifyThatLinksContainsNeededWords(IWebDriver driver, string searchData)
@@ -19,11 +19,22 @@ public class ValidateDataHelper
             Console.WriteLine("there is no expected words : " + link.Text);
         }
 
-        Assert.IsEmpty(invalidLinks, "words are missed");
+        Assert.That(invalidLinks.Equals(null), "words are missed");
     }
 
     public void VerifyThatPageContainsSpecificWord(string pageText, string programmingLanguage)
     {
         Assert.That(pageText.Contains(programmingLanguage), "Page is not contain text that belong to the provided language");
+    }
+
+    public void VerifyThatFileIsDownloaded(string fullPath)
+    {
+        bool isFileDownloaded = File.Exists(fullPath);
+        Assert.That(isFileDownloaded, $"The file was not downloaded: {fullPath}");
+    }
+
+    public void VerifyThatTextIsEqual(string actualText, string expectedText)
+    {
+        Assert.That(actualText.Equals(expectedText), $"Actual text '{actualText}' does not match expected text '{expectedText}'.");
     }
 }

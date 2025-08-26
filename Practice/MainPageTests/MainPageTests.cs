@@ -1,7 +1,7 @@
 ﻿using MainPageTests.DriverInitialization;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-using TestProject1.BL.Helpers;
+using TestProject1.Helpers;
 using TestProject1.PageObject;
 
 namespace MainPageTests;
