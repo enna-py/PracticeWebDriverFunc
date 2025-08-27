@@ -19,7 +19,7 @@ public class ValidateDataHelper
             Console.WriteLine("there is no expected words : " + link.Text);
         }
 
-        Assert.That(invalidLinks.Equals(null), "words are missed");
+        Assert.IsEmpty(invalidLinks);
     }
 
     public void VerifyThatPageContainsSpecificWord(string pageText, string programmingLanguage)
@@ -30,7 +30,7 @@ public class ValidateDataHelper
     public void VerifyThatFileIsDownloaded(string fullPath)
     {
         bool isFileDownloaded = File.Exists(fullPath);
-        Assert.That(isFileDownloaded, $"The file was not downloaded: {fullPath}");
+        Assert.That(new FileInfo(fullPath).Length > 0, "Downloaded file is empty");
     }
 
     public void VerifyThatTextIsEqual(string actualText, string expectedText)
