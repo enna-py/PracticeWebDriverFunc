@@ -204,7 +204,7 @@ namespace MainPageTests.Features
     testRunner.And("I click on the Download button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 41
-    testRunner.Then("the file \"EPAM_Systems_Company_Overview.pdf\" should be downloaded successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("the file EPAM_Systems_Company_Overview.pdf should be downloaded successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

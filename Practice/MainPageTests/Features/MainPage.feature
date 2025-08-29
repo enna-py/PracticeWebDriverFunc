@@ -38,7 +38,7 @@
     And I accept cookies
     And I scroll down to the EPAM at a Glance section
     And I click on the Download button
-    Then the file "EPAM_Systems_Company_Overview.pdf" should be downloaded successfully
+    Then the file EPAM_Systems_Company_Overview.pdf should be downloaded successfully
 
   Scenario: Validate title of the article matches with title in the carousel
     Given I navigate to the website
