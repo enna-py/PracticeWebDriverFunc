@@ -5,6 +5,8 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using TestProject1.Helpers;
 using TestProject1.PageObject;
+using System;
+using System.IO;
 
 namespace MainPageTests;
 public class Tests
@@ -128,7 +130,6 @@ public class Tests
 
             Log.Info("Validating that carousel title matches article title...");
             validateDataHelper.VerifyThatTextIsEqual(textFromArticle, textFromCarousel);
-
             Log.Info("Test TitleOfTheArticleMatchesWithTitleInTheCarousel passed successfully.");
         }
     }
