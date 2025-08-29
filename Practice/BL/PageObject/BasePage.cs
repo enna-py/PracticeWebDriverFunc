@@ -39,4 +39,12 @@ public abstract class BasePage
         driver.Url = Config.AppSettings.BaseUrl;
         driver.Manage().Window.Maximize();
     }
+
+    public void WaitUntilElementIsVisiable(IWebElement element)
+    {
+        wait.Until(driver =>
+        {
+            return element.Displayed;
+        });
+    }
 }

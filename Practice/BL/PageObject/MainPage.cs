@@ -19,6 +19,8 @@ public class MainPage : BasePage
     public IWebElement FindButton => SearchPanel.FindElement(By.XPath(".//*[@class='search-results__input-holder']/following-sibling::button"));
     public IWebElement AboutLink => driver.FindElement(By.XPath("//a[@class = 'top-navigation__item-link js-op' and normalize-space()='About']"));
     public IWebElement InsightsLink => driver.FindElement(By.XPath("//a[@class = 'top-navigation__item-link js-op' and normalize-space()='Insights']"));
+    public IWebElement ServicesLink => driver.FindElement(By.XPath("//a[@class = 'top-navigation__item-link js-op' and normalize-space()='Services']"));
+    public IWebElement ServiceCategory(string category) => driver.FindElement(By.XPath($"//a[text()='{category}' and contains(@class, 'top-navigation__sub-link')]"));
 
     public void Search(string phrase)
     {

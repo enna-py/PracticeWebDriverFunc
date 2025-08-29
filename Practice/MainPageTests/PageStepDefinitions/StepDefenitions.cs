@@ -18,6 +18,7 @@ public sealed class StepDefenitions
     private readonly CareersPage careersPage;
     private readonly InsightsPage insightsPage;
     private readonly SearchPage searchPage;
+    private readonly ServicesPage servicesPage;
     private readonly ValidateDataHelper validateDataHelper;
     private readonly ScenarioContext _scenarioContext;
     private readonly IWebDriver driver;
@@ -27,6 +28,7 @@ public sealed class StepDefenitions
     {
         this.wait = wait;
         this.driver = driver;
+        servicesPage = new ServicesPage(driver, wait);
         mainPage = new MainPage(driver, wait);
         aboutPage = new AboutPage(driver, wait);
         careersPage = new CareersPage(driver, wait);
@@ -72,6 +74,7 @@ public sealed class StepDefenitions
     public void WhenISelectTheOption()
     {
         Log.Info("Selecting Remote option...");
+        careersPage.WaitUntilElementIsVisiable(careersPage.RemoteOption);
         careersPage.RemoteOption.Click();
     }
 
@@ -79,6 +82,7 @@ public sealed class StepDefenitions
     public void WhenIClickOnTheFindButton()
     {
         Log.Info("Clicking on the Find button...");
+        careersPage.WaitUntilElementIsVisiable(careersPage.SubmitButton);
         careersPage.SubmitButton.Click();
     }
 
@@ -86,6 +90,7 @@ public sealed class StepDefenitions
     public void WhenIOpenTheLatestElementInTheListOfResults()
     {
         Log.Info("Opening the last job listing...");
+        careersPage.WaitUntilElementIsVisiable(careersPage.LastListItem);
         careersPage.LastListItem.Click();
     }
 
@@ -101,6 +106,7 @@ public sealed class StepDefenitions
     public void WhenIClickOnTheMagnifierIcon()
     {
         Log.Info("Clicking on the magnifier icon...");
+        mainPage.WaitUntilElementIsVisiable(mainPage.SearchIcon);
         mainPage.SearchIcon.Click();
     }
 
@@ -115,6 +121,7 @@ public sealed class StepDefenitions
     public void WhenIClickTheButton()
     {
         Log.Info("Clicking the Find button...");
+        mainPage.WaitUntilElementIsVisiable(mainPage.FindButton);
         mainPage.FindButton.Click();
     }
 
@@ -136,6 +143,7 @@ public sealed class StepDefenitions
     public void WhenISelectAboutFromTheTopMenu(string about)
     {
         Log.Info("Clicking on About link...");
+        mainPage.WaitUntilElementIsVisiable(mainPage.AboutLink);
         mainPage.AboutLink.Click();
     }
 
@@ -152,6 +160,7 @@ public sealed class StepDefenitions
     public void WhenIClickOnTheButton(string download)
     {
         Log.Info("Clicking on the Download button...");
+        aboutPage.WaitUntilElementIsVisiable(aboutPage.DownloadButton);
         aboutPage.DownloadButton.Click();
     }
 
@@ -194,6 +203,7 @@ public sealed class StepDefenitions
     public void WhenIClickOnTheReadMoreButton(string p0)
     {
         Log.Info("Clicking 'Read more' button...");
+        insightsPage.WaitUntilElementIsVisiable(insightsPage.ReadMoreButton);
         insightsPage.ReadMoreButton.Click();
     }
 
@@ -207,25 +217,31 @@ public sealed class StepDefenitions
     [When(@"I click on Services in the top menu")]
     public void WhenIClickOnServicesInTheTopMenu()
     {
-        throw new PendingStepException();
+        Log.Info("Clicking on Services link...");
+        mainPage.WaitUntilElementIsVisiable(mainPage.ServicesLink);
+        mainPage.ServicesLink.Click();
     }
 
     [When(@"I select a specific service category ""([^""]*)""")]
     public void WhenISelectASpecificServiceCategory(string service)
     {
-        throw new PendingStepException();
+        Log.Info($"Selecting service category: {service}...");
+        mainPage.WaitUntilElementIsVisiable(mainPage.ServiceCategory(service));
+        mainPage.ServiceCategory(service).Click();
     }
 
-    [Then(@"I verify that the page contains the correct title")]
-    public void ThenIVerifyThatThePageContainsTheCorrectTitle()
+    [Then(@"I verify that the page contains the ""([^""]*)"" title")]
+    public void ThenIVerifyThatThePageContainsTheCorrectTitle(string title)
     {
-        throw new PendingStepException();
+        Log.Info("Verifying that the page contains the correct title...");
+        mainPage.WaitUntilElementIsVisiable(servicesPage.ServiceTextLine(title));
     }
 
     [Then(@"I verify that the section Our Related Expertise is displayed on the page")]
     public void ThenIVerifyThatTheSectionIsDisplayedOnThePage()
     {
-        throw new PendingStepException();
+        Log.Info("Verifying that the 'Our Related Expertise' section is displayed on the page...");
+        mainPage.WaitUntilElementIsVisiable(servicesPage.ServiceTextLine("Our Related Expertise"));
     }
 
 }

@@ -54,7 +54,7 @@
     When I click on Services in the top menu
 	  And I accept cookies
     And I select a specific service category "<service>"
-    Then I verify that the page contains the correct title
+    Then I verify that the page contains the "<service>" title
     And I verify that the section Our Related Expertise is displayed on the page
 
     Examples:
