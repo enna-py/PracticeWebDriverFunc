@@ -1,7 +1,7 @@
 ﻿Feature: MainPage
-  A short summary of the feature
+  Validation of the key page functionalities to ensure they work stably and meet expectations
 
-  @tag1
+  @smoke
   Scenario Outline: Validate that the user can search for a position based on criteria
     Given I navigate to the website
     When I click on Careers in the top menu
