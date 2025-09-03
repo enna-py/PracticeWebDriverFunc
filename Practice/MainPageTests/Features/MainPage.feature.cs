@@ -35,7 +35,8 @@ namespace MainPageTests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "MainPage", "  A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "MainPage", "  Validation of the key page functionalities to ensure they work stably and meet " +
+                    "expectations", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,14 +76,14 @@ namespace MainPageTests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Validate that the user can search for a position based on criteria")]
-        [NUnit.Framework.CategoryAttribute("tag1")]
+        [NUnit.Framework.CategoryAttribute("smoke")]
         [NUnit.Framework.TestCaseAttribute("Java", "All locations", null)]
         [NUnit.Framework.TestCaseAttribute("Python", "Ukraine", null)]
         [NUnit.Framework.TestCaseAttribute("C#", "Poland", null)]
         public void ValidateThatTheUserCanSearchForAPositionBasedOnCriteria(string language, string location, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "tag1"};
+                    "smoke"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -285,7 +286,7 @@ namespace MainPageTests.Features
     testRunner.And(string.Format("I select a specific service category \"{0}\"", service), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 57
-    testRunner.Then("I verify that the page contains the correct title", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then(string.Format("I verify that the page contains the \"{0}\" title", service), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 58
     testRunner.And("I verify that the section Our Related Expertise is displayed on the page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
