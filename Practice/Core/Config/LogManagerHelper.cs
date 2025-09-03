@@ -12,8 +12,14 @@ public static class LogManagerHelper
 {
     public static ILog ConfigureLogger()
     {
-        var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
+        var logFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
+        if (!Directory.Exists(logFolder))
+            Directory.CreateDirectory(logFolder);
+
+        var logRepository = LogManager.GetRepository(typeof(LogManagerHelper).Assembly);
+
         XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
+
         return LogManager.GetLogger(typeof(LogManagerHelper));
     }
 }
